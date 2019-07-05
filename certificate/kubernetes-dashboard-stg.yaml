@@ -1,0 +1,18 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: kubernetes-dashboard-stg
+  namespace: kube-system
+spec:
+  secretName: kubernetes-dashboard-cert
+  dnsNames:
+    - dashboard.dipp.ink
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-stg
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - dashboard.dipp.ink
