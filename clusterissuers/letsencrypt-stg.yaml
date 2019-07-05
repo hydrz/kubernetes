@@ -9,4 +9,7 @@ spec:
     email: n.haoyuan@gmail.com
     privateKeySecretRef:
       name: letsencrypt-stg
-    http01: {}
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
