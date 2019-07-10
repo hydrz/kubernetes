@@ -14,7 +14,7 @@ global:
 image:
   registry: registry.cn-hangzhou.aliyuncs.com
   repository: nan/bitnami-postgresql-postgis
-  tag: 11.4.0
+  tag: 10.9.0
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -232,7 +232,7 @@ persistence:
   storageClass: "local-nfs"
   accessModes:
     - ReadWriteOnce
-  size: 8Gi
+  size: 20Gi
   annotations: {}
 
 ## updateStrategy for PostgreSQL StatefulSet and its slaves StatefulSets
@@ -285,8 +285,11 @@ slave:
 ##
 resources:
   requests:
-    memory: 2Gi
-    cpu: 1
+    memory: 256Mi
+    cpu: 250m
+  limits:
+    memory: 8Gi
+    cpu: 4
 
 networkPolicy:
   ## Enable creation of NetworkPolicy resources.
