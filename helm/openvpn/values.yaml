@@ -18,7 +18,7 @@ service:
   externalPort: 443
   internalPort: 443
   externalIPs: []
-  nodePort: 21103
+  nodePort: 21104
   # LoadBalancerSourceRanges: 0.0.0.0/0
   # loadBalancerIP: 10.0.0.1
 
@@ -58,20 +58,20 @@ persistence:
   size: 2M
 openvpn:
   # Network allocated for openvpn clients (default: 10.240.0.0).
-  OVPN_NETWORK: 10.240.0.0
+  OVPN_NETWORK: 10.245.0.0
   # Network subnet allocated for openvpn client (default: 255.255.0.0).
   OVPN_SUBNET: 255.255.0.0
   # Protocol used by openvpn tcp or udp (default: udp).
   OVPN_PROTO: tcp
   # Kubernetes pod network (optional).
-  OVPN_K8S_POD_NETWORK: "10.0.0.0"
+  OVPN_K8S_POD_NETWORK: "10.244.0.0"
   # Kubernetes pod network subnet (optional).
-  OVPN_K8S_POD_SUBNET: "255.0.0.0"
+  OVPN_K8S_POD_SUBNET: "255.255.0.0"
   # Kubernetes service network (optional).
   # Define openvpn.OVPN_K8S_SVC_NETWORK and openvpn.OVPN_K8S_SVC_SUBNET if it's needed to create a separate route to Kubernates service subnet
-  # OVPN_K8S_SVC_NETWORK:
+  OVPN_K8S_SVC_NETWORK: "10.96.0.0"
   # Kubernetes service network subnet (optional).
-  # OVPN_K8S_SVC_SUBNET:
+  OVPN_K8S_SVC_SUBNET: "255.240.0.0"
   # Server certificate data
   # keystoreSecret:
   # secret with openvpn certificates. If specified, certificates are taken from the secret
@@ -88,8 +88,8 @@ openvpn:
   # Override default cipher
   # cipher: AES-256-CBC
   # Arbitrary lines appended to the end of the server configuration file
-  # conf: |
-  #  max-clients 100
-  #  client-to-client
+  conf: |
+   max-clients 100
+   client-to-client
 
 nodeSelector: {}

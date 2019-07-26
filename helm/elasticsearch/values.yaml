@@ -70,13 +70,13 @@ master:
   # nodeAffinity:
   service:
     ## master-eligible service type
-    type: NodePort
+    type: ClusterIP
     ## Elasticsearch transport port
     port: 9300
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
     ##
-    nodePort: 21193
+    # nodePort:
 
     ## Provide any additional annotations which may be required. This can be used to
     ## set the LoadBalancer service type to internal only.
@@ -136,13 +136,13 @@ coordinating:
   # nodeAffinity:
   service:
     ## coordinating-only service type
-    type: NodePort
+    type: ClusterIP
     ## Elasticsearch REST API port
     port: 9200
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
     ##
-    nodePort: 21192
+    # nodePort:
 
     ## Provide any additional annotations which may be required. This can be used to
     ## set the LoadBalancer service type to internal only.
@@ -236,7 +236,7 @@ data:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "local-nfs"
+    # storageClass: "-"
 
     ## Persistent Volume Access Mode
     accessModes:
